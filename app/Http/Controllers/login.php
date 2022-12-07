@@ -8,6 +8,8 @@ use App\Models\Offer;
 use App\Models\decision;
 use App\Models\avis;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 class login extends Controller
 {
     function show(Request $request){
@@ -70,8 +72,10 @@ class login extends Controller
         ]);
 
         if($request->input('pass')===$request->input('cpass')){
+            $newPass=Hash::make($request->input('pass'));
             DB::update('update login set password = ? where email = ?'
          ,[$request->input('pass'), $request->input('email')]);
+            DB::update('update users set password = ? where email = ?',[$newPass,$request->input('email')]);
          return redirect('/');
         }
 

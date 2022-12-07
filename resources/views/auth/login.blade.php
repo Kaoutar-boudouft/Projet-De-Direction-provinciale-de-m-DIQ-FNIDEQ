@@ -66,8 +66,10 @@
 						<div class="text-center"><button type="submit" class="btn btn-primary">
                             {{ __('Login') }}
                         </button></div>
+                        <a href="modifier_login">   <span style='color:blue;'>Mot de passe Oublié</span></a>
 
-					</form>
+
+                    </form>
 
 				</div>
 

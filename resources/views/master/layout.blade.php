@@ -14,13 +14,21 @@
 
     yield('title')
 </head>
-
+<style type="text/css">
+    #navdiv{
+        overflow-y: scroll;
+        border-bottom: 2px solid black;
+height: 60%  ;  
+width:18%;
+position: fixed; 
+}
+</style>
 <body style="background-color: whitesmoke;">
 
     <div class="d-flex flex-column flex-shrink-0 p-3 light" id="menu">
         <div class="log" style="height: 30%">
         <a href="/">
-            <img src="{{url('/img/im.jpg')}}" class="img-fluid logo">
+            <img src="img/im.jpg" class="img-fluid logo">
         </a>
         <p class="acad" style="font-size: 100%; text-align:center; color:;">Académie régionale d'éducation et de formation TANGER-TETOUAN-Al-Hoceima direction provinciale
             de
@@ -29,7 +37,9 @@
     <div class="lis" style="height: 70%">
 
     <hr>
-        <ul class="nav nav-pills flex-column" >
+    <div id="navdiv">
+        
+        <ul class="nav flex-column" >
             <li>
                 <a href="/liste_offre" class="nav-link link-dark @yield('offre')">
                     Offres
@@ -76,8 +86,8 @@
             </li>
             @if (Auth::user()->email == "aaahmedg@gmail.com")
             <li>
-                <a href="ajouter_utilisateur" class="nav-link link-dark @yield('uti')">
-                    Utilisateur
+                <a href="utilisateurs" class="nav-link link-dark @yield('uti')">
+                    Utilisateurs
                 </a>
             </li>
             @endif
@@ -92,6 +102,8 @@
                 </form>
             </li>
         </ul>
+    </div>
+
         <hr>
     </div>
     </div>

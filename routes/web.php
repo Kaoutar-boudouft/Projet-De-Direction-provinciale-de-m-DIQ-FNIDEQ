@@ -10,7 +10,8 @@ use App\Http\Controllers\decisio;
 use App\Http\Controllers\convocatio;
 use App\Http\Controllers\pv;
 use App\Http\Controllers\login;
-
+use  App\Http\Controllers\utilisateur;
+use  App\Http\middleware\CheckAdmin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -177,3 +178,16 @@ Route::get('/liste_avis', [avi::class,'afficher_avis']);
 Route::get('/ajouter_utilisateur', function () {
     return view('auth.register');
 })->middleware('auth');
+ 
+
+ Route::middleware([CheckAdmin::class])->group(function(){ 
+ Route::get('/utilisateurs', [utilisateur::class,'show']);
+
+ 
+ 
+Route::get('/ajouter_user', [utilisateur::class,'insertform']);
+Route::post('/ajout_user', [utilisateur::class,'insert']);
+Route::get('/delete_user/{id}', [utilisateur::class,'destroy']);
+Route::get('/modifier_user/{id}', [utilisateur::class,'showSpecialUser']);
+Route::post('/modifie_user/{id}', [utilisateur::class,'EditSpecialUser']);
+});

@@ -81,18 +81,21 @@ Liste des PV
                     </div>
                     @endif
 
-                    @if ($offe[4]=="pv_one_existee" && isset($offe[5]) && isset($offe[6]))
+                    @if ($offe[4]=="pv_one_existee" && isset($offe[5]) && isset($offe[6]) )
                     <div class="col">
-                        <div class="download"> <a href="{{url('Imprimer_pv1/'.$offe[3])}}"><i class="fa fa-download" style="font-size: 0.9em;"  aria-hidden="true"></i>PV 1</a></div>
+                        <div class="download">
+                            <a href="{{url('Imprimer_pv1/'.$offe[3])}}"><i class="fa fa-download" style="font-size: 0.9em;"  aria-hidden="true"></i>PV 1</a></div>
+                        @if (auth()->user()->email == 'aaahmedg@gmail.com')
                         <div class="update" style="text-align: center;"><a href="{{url('supp_pv1/'.$offe[3])}}">Supprimer</a></div>
+                        @endif
                     </div>
                     <div class="col">
                         <div class="download"> <a href="{{url('Imprimer_pv2/'.$offe[3])}}"><i class="fa fa-download" style="font-size: 0.9em;"  aria-hidden="true"></i>PV 2</a></div>
-                        <div class="update" style="text-align: center;"><a href="{{url('supp_pv2/'.$offe[3])}}">Supprimer</a></div>
+                                               @if (auth()->user()->email == 'aaahmedg@gmail.com')  <div class="update" style="text-align: center;"><a href="{{url('supp_pv2/'.$offe[3])}}">Supprimer</a></div>   @endif
                     </div>
                     <div class="col">
                         <div class="download"> <a href="{{url('Imprimer_pv3/'.$offe[3])}}"><i class="fa fa-download" style="font-size: 0.9em;"  aria-hidden="true"></i>PV 3</a></div>
-                        <div class="update" style="text-align: center;"><a href="{{url('supp_pv3/'.$offe[3])}}">Supprimer</a></div>
+                                               @if (auth()->user()->email == 'aaahmedg@gmail.com')<div class="update" style="text-align: center;"><a href="{{url('supp_pv3/'.$offe[3])}}">Supprimer</a></div>   @endif
 
                     </div>
 

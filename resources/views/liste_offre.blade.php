@@ -66,7 +66,7 @@ liste des offres
                 <b id="tst">
                 @foreach ($data_offer as $offer)
 
-                <div class="modal fade" id="exampleModal{{$offer['Num']}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal{{$offer['id']}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -88,7 +88,7 @@ liste des offres
                     <div class="col" style="max-width: 20%"><span class="sp" id="sp">{{$offer['Num']}}</span></div>
                     <div class="col" style="max-width: 50%">{{$offer['objet']}}</div>
                     <div class="col" style="max-width: 30%">
-                        <input type="submit" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$offer['Num']}}" href="#" role="button" value="Supprimer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$offer['id']}}">Supprimer</button>
                         <a    href="{{url('modifier_offre/'.$offer['id'] )}}" ><input type="submit" class="btn btn-outline-primary" href="#" role="button" value="Modifier"></a>
 
                     </div>

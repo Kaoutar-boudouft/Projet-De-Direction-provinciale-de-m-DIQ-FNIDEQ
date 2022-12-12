@@ -29,9 +29,9 @@ Liste des PV
             </div>
         <div id="tabl"  class="pv">
             <div class="row head" id="colo">
-                <div class="col">N Offre</div>
-                <div class="col">DATE D'OUVERTURE</div>
-                <div class="col">Process Verbale</div>
+                <div class="col-2 text-center">N Offre</div>
+                <div class="col-3 text-center">DATE D'OUVERTURE</div>
+                <div class="col-6 text-center">Process Verbale</div>
 
 
             </div>
@@ -39,8 +39,8 @@ Liste des PV
                 <b id="tst">
                 @foreach ($offer as $offe)
                 <div class="row" id="colo">
-                    <div class="col" style="font-size:80%;"><span class="sp" id="sp">{{$offe[0]}}</span></div>
-                    <div class="col">{{$offe[1]}} à partir du {{$offe[2]}}</div>
+                    <div class="col-2 text-center" style="font-size:80%;"><span class="sp" id="sp">{{$offe[0]}}</span></div>
+                    <div class="col-3">{{$offe[1]}} à partir du {{$offe[2]}}</div>
                     @if ($offe[4]=="rien_pv_one")
                     <div class="col">
                        {{-- <div class="close"><i class="fa fa-close" style="font-size: 0.9em;"  aria-hidden="true"></i>PV 1</div>--}}

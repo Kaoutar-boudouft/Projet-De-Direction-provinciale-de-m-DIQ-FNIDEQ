@@ -39,16 +39,10 @@ return view('liste_cps',['offer'=>$offre_table]);
  $offre = DB::table('offers')->where('id', $id)->first();
  $cps = DB::table('cps')->where('id', $id)->first();
  $aviii = DB::table('avis')->where('num_avis', $cps->num_avis)->first();
- $idgagant = DB::table('pv_trois')->where('num_offer', $id)->first();
- $gagant = DB::table('concurrents')->where('id', $idgagant->id_gagnant)->first();
+ $pv3 = DB::table('pv_trois')->where('num_offer', $id)->first();
 
-     $nom_gagant=$gagant->Nom;
-     $name_gerant=$idgagant->Nom_gerant;
-     $adresse=$idgagant->adresse;
-     $cnss=$idgagant->Num_cnss;
-     $rib=$idgagant->RIB;
-     $banque=$idgagant->banque;
-     $registre=$idgagant->registre;
+
+
 
  $templateProcessor = new TemplateProcessor( documentTemplate: 'Word-files/cps.docx');
  $templateProcessor->setValue( 'num_offre', $offre->Num);
@@ -56,15 +50,36 @@ return view('liste_cps',['offer'=>$offre_table]);
  $templateProcessor->setValue( 'caution', $offre->caution);
  $templateProcessor->setValue( 'date_avis', $aviii->date_ouverture);
 
- if ($gagant){
-     $templateProcessor->setValue( 'nom_gagnant', $nom_gagant);
-     $templateProcessor->setValue( 'gerant', $name_gerant);
-     $templateProcessor->setValue( 'adresse', $adresse);
-     $templateProcessor->setValue( 'cnss', $cnss);
-     $templateProcessor->setValue( 'rib', $rib);
-     $templateProcessor->setValue( 'banque', $banque);
-     $templateProcessor->setValue( 'registre', $registre);
- }
+     if ($pv3){
+         $idgagant=$pv3->id_gagnant;
+         $gagant = DB::table('concurrents')->where('id', $idgagant)->first();
+
+         $nom_gagant=$gagant->Nom;
+         $name_gerant=$pv3->Nom_gerant;
+         $adresse=$pv3->adresse;
+         $cnss=$pv3->Num_cnss;
+         $rib=$pv3->RIB;
+         $banque=$pv3->banque;
+         $registre=$pv3->registre;
+
+         $templateProcessor->setValue( 'nom_gagnant', $nom_gagant);
+         $templateProcessor->setValue( 'gerant', $name_gerant);
+         $templateProcessor->setValue( 'adresse', $adresse);
+         $templateProcessor->setValue( 'cnss', $cnss);
+         $templateProcessor->setValue( 'rib', $rib);
+         $templateProcessor->setValue( 'banque', $banque);
+         $templateProcessor->setValue( 'registre', $registre);
+     }
+
+     else{
+         $templateProcessor->setValue( 'nom_gagnant', "......................");
+         $templateProcessor->setValue( 'gerant', "......................");
+         $templateProcessor->setValue( 'adresse', "......................");
+         $templateProcessor->setValue( 'cnss', "......................");
+         $templateProcessor->setValue( 'rib', "......................");
+         $templateProcessor->setValue( 'banque', "......................");
+         $templateProcessor->setValue( 'registre', "......................");
+     }
 
  $templateProcessor->saveAs( fileName: 'cps.docx');
  return response()->download(file : 'cps.docx')->deleteFileAfterSend(shouldDelete:true);

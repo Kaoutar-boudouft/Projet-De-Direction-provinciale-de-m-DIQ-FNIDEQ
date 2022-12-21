@@ -170,6 +170,9 @@ Route::get('/supp_pv3/{id}', [pv::class,'supprimer_pvthree']);
 
 Auth::routes();
 
+Route::get('/getConcurrentsByHints/{hint}',[pv::class,'getConcurrentsByHints']);
+
+
 Route::get('/home', [jurii::class,'show_off'])->name('home');
 
 Route::get('/liste_avis', [avi::class,'afficher_avis']);
@@ -178,13 +181,12 @@ Route::get('/liste_avis', [avi::class,'afficher_avis']);
 Route::get('/ajouter_utilisateur', function () {
     return view('auth.register');
 })->middleware('auth');
- 
 
- Route::middleware([CheckAdmin::class])->group(function(){ 
+
+ Route::middleware([CheckAdmin::class])->group(function(){
  Route::get('/utilisateurs', [utilisateur::class,'show']);
 
- 
- 
+
 Route::get('/ajouter_user', [utilisateur::class,'insertform']);
 Route::post('/ajout_user', [utilisateur::class,'insert']);
 Route::get('/delete_user/{id}', [utilisateur::class,'destroy']);

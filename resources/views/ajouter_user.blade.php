@@ -46,8 +46,18 @@ ajouter un Utilisateur
                             <input type="text" class="form-control" id="inp-nom" placeholder="password" name="password" value="{{ old('profession')}}">
                             <span style='color:red;'> @error('password'){{ $message}}@enderror</span>
                         </div>
+
+                        <div class="col">
+                            <label for="fname" class="control-label" id="lab-nom">Role</label>
+
+                            <select name="role" class="form-select w-50">
+                                <option value="admin">Admin</option>
+                                <option value="admin">User</option>
+                            </select>
+                            <span style='color:red;'> @error('role'){{ $message}}@enderror</span>
+                        </div>
                     </div>
-                    
+
 
                     <input type="submit" class="btn btn-primary" id="ajouter-avis" style="width: 18%;margin-left:78% ;margin-top : 1.5%;border-radius: 12px" value="Ajouter">
 

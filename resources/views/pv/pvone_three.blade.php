@@ -5,6 +5,7 @@ les informations des concurrents
 <link href="/css/pv.css" rel="stylesheet">
 @section('pv')active @endsection
 @section('content')
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <div class="content" style="margin-left:20%; margin-top: -2.5vh">
     <div class="sid">
         <div class="row g-3 align-items-center" style="margin-bottom: 0.5%;margin-left:2.5%;margin-top: 1%;">
@@ -63,7 +64,30 @@ les informations des concurrents
 
                         <div class="row" >
                             <div class="col">{{$i}}</div>
-                            <div class="col"><input type="text" class="form-control" name="n[]"></div>
+                            <div class="col">
+                                <input  id="{{$i}}" list="villes{{$i}}" type="text" class="vi form-control" name="n[]" required>
+                                <datalist  id="villes{{$i}}" >
+
+                                </datalist>
+                                </div>
+
+                            <script>
+                                $("#"+{{$i}}).on("keyup",function(event) {
+                                    var id=$(this).attr('id');
+                                    var value=$("#"+id).val();
+                                    var url= "{{url('/')}}"+'/getConcurrentsByHints/'+value;
+                                    $.ajax({
+                                        url: url,
+                                        method: 'get',
+                                    }).done(function(response) {
+                                        $("#villes"+id+" option").remove();
+                                        var concurrents = JSON.parse(response);
+                                        concurrents.forEach(function(item){
+                                            $('#villes'+id).append("<option vlaue='" + item.Nom + "'>" + item.Nom + "</option>");
+                                        })
+                                    })
+                                });
+                            </script>
                             <div class="col">
                                <span> <input type="radio" name="p{{$i}}[]" value="Electronique"> El</span>
                                <span> <input type="radio" name="p{{$i}}[]" value="Physique"> Ph</span>

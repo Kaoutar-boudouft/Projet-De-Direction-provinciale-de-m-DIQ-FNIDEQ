@@ -67,6 +67,7 @@ for($a=0;$a<count($pv_deux);$a++){
     if($pv_deux[$a]->num_offer==$offre->id && $pv_deux[$a]->id_avis==$data_avis[$i]->id){
         $offre_facu[4]="pv_one_existee";
         $offre_facu[5]="pv_deux_existe";
+        break;
     }
 
 }
@@ -74,6 +75,7 @@ for($a=0;$a<count($pv_deux);$a++){
 for($b=0;$b<count($pv_trois);$b++){
     if($pv_trois[$b]->num_offer==$offre->id){
         $offre_facu[6]="pv_trois_existe";
+        break;
     }
     else{
         unset($offre_facu[6]);
@@ -111,6 +113,7 @@ for($b=0;$b<count($pv_trois);$b++){
         for($b=0;$b<count($pv_trois);$b++){
             if($pv_trois[$b]->num_offer==$offre->id){
                 $offre_facu[6]="pv_trois_existe";
+                break;
             }
             else{
                 unset($offre_facu[6]);
@@ -1008,7 +1011,7 @@ $cc=number_format((float)$c, 2, '.', '');
         $aa=$offre->id.'_'.$avis->id;
         $avis->idss=$aa;
         DB::delete('delete from first_pvs where id_offer =  ?',[$ids[0]]);
-        DB::delete('delete from concurrents where id_offer =  ?',[$ids[0]]);
+//        DB::delete('delete from concurrents where id_offer =  ?',[$ids[0]]);
         DB::delete('delete from jounal_matins where id_offer =  ?',[$ids[0]]);
         DB::delete('delete from jounal_saharas where id_offer =  ?',[$ids[0]]);
         DB::delete('delete from pv_deuxes where num_offer =  ?',[$ids[0]]);
@@ -1039,6 +1042,11 @@ $cc=number_format((float)$c, 2, '.', '');
         DB::delete('delete from pv_trois where num_offer =  ?',[$ids[0]]);
         return redirect('/process_verbal');
        //return $avis;
+    }
+
+    function getConcurrentsByHints($hint){
+       $concurrents=DB::table('concurrents')->where('Nom','like','%'.$hint.'%')->get();
+       return json_encode($concurrents);
     }
 
 }

@@ -18,9 +18,9 @@
     #navdiv{
         overflow-y: scroll;
         border-bottom: 2px solid black;
-height: 60%  ;  
+height: 60%  ;
 width:18%;
-position: fixed; 
+position: fixed;
 }
 </style>
 <body style="background-color: whitesmoke;">
@@ -28,7 +28,7 @@ position: fixed;
     <div class="d-flex flex-column flex-shrink-0 p-3 light" id="menu">
         <div class="log" style="height: 30%">
         <a href="/">
-            <img src="img/im.jpg" class="img-fluid logo">
+            <img src="{{url('img/im.jpg')}}" class="img-fluid logo">
         </a>
         <p class="acad" style="font-size: 100%; text-align:center; color:;">Académie régionale d'éducation et de formation TANGER-TETOUAN-Al-Hoceima direction provinciale
             de
@@ -38,7 +38,7 @@ position: fixed;
 
     <hr>
     <div id="navdiv">
-        
+
         <ul class="nav flex-column" >
             <li>
                 <a href="/liste_offre" class="nav-link link-dark @yield('offre')">

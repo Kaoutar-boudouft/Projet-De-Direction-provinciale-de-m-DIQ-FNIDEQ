@@ -84,7 +84,7 @@ position: fixed;
                     Etat d'engagement
                 </a>
             </li>
-            @if (Auth::user()->email == "aaahmedg@gmail.com")
+            @if (Auth::user()->role == "admin")
             <li>
                 <a href="utilisateurs" class="nav-link link-dark @yield('uti')">
                     Utilisateurs
